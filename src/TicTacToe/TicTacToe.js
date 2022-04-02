@@ -4,7 +4,7 @@ import './TicTacToe.css'
 const TicTacToe = () => {
 	const [turn, setTurn] = useState('x');
 	const [cells, setCells] = useState(Array(9).fill(''));
-	const [winner, setWinner] = useState();
+	const [winner, setWinner] = useState(null);
 	const [end, setEnd] = useState(false);
 
 	const handleRestart = (squares) => {
@@ -44,8 +44,8 @@ const TicTacToe = () => {
 			if (squares[i] === '')
 				return ;
 		}
-		setEnd(true);
-
+		if (!winner)
+			setEnd(true);
 	}
 
 	const handleClick = (num) => {
@@ -102,7 +102,7 @@ const TicTacToe = () => {
 				<button onClick={() => handleRestart()}>Rejouer :)</button>
 				</>
 			)}
-			{end && (
+			{(!winner && end) && (
 				<>
 				<p> Personne n'a gagné!</p>
 				<button onClick={() => handleRestart()}>Rejouer :)</button>
