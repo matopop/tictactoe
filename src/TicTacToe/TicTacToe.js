@@ -41,7 +41,7 @@ const TicTacToe = () => {
 			});
 		}
 		for (let i = 0; i < 9; i++) {
-			if (squares[i] == '')
+			if (squares[i] === '')
 				return ;
 		}
 		setEnd(true);
@@ -49,7 +49,7 @@ const TicTacToe = () => {
 	}
 
 	const handleClick = (num) => {
-		if (winner || cells[num] != '') {return;}
+		if (winner || cells[num] !== '') {return;}
 
 		let squares = [...cells];
 
