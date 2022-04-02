@@ -5,10 +5,12 @@ const TicTacToe = () => {
 	const [turn, setTurn] = useState('x');
 	const [cells, setCells] = useState(Array(9).fill(''));
 	const [winner, setWinner] = useState();
+	const [end, setEnd] = useState(false);
 
 	const handleRestart = (squares) => {
 		setWinner(null);
 		setCells(Array(9).fill(''));
+		setEnd(false);
 	}
 	const checkForWinner = (squares) => {
 		let combos = {
@@ -38,6 +40,12 @@ const TicTacToe = () => {
 					}
 			});
 		}
+		for (let i = 0; i < 9; i++) {
+			if (squares[i] == '')
+				return ;
+		}
+		setEnd(true);
+
 	}
 
 	const handleClick = (num) => {
@@ -53,8 +61,11 @@ const TicTacToe = () => {
 			squares[num] = 'o';
 			setTurn('x');
 		}
-		checkForWinner(squares);
-		setCells(squares);
+		if (!winner)
+		{
+			checkForWinner(squares);
+			setCells(squares);
+		}
 	};
 
 	const Cell = ({ num }) => {
@@ -84,9 +95,16 @@ const TicTacToe = () => {
 					</tr>
 				</tbody>
 			</table>
+			
 			{winner && (
 				<>
 				<p> {winner} a gagné! </p>
+				<button onClick={() => handleRestart()}>Rejouer :)</button>
+				</>
+			)}
+			{end && (
+				<>
+				<p> Personne n'a gagné!</p>
 				<button onClick={() => handleRestart()}>Rejouer :)</button>
 				</>
 			)}
