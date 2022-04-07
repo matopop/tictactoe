@@ -2,6 +2,8 @@ First react project !
 
 # TIC TAC TOE
 
+`npm i`
+
 `npm start` to launch on your browser.
 
 ## To-do list if you want to upgrade it :)
